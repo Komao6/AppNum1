@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         var cnt = 0
         clickBt.setOnClickListener{
             score.text = "${++cnt}"
+
         }
         val timer = object: CountDownTimer(10000, 1000) {
             override fun onTick(millisUntilFinished: Long) {}
