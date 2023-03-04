@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         val clickBt = findViewById<Button>(R.id.click_bt)
         val timerM = findViewById<TextView>(R.id.timer)
         val totalScore = findViewById<TextView>(R.id.total_score)
+        val resetBt = findViewById<Button>(R.id.reset_bt)
 
         var cnt = 0
 
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             override fun onFinish() {
                 totalScore.text = "Your Score: $cnt"
                 totalScore.visibility = View.VISIBLE
-                cnt = 0
+                resetBt.visibility = View.VISIBLE
             }
         }
 
@@ -38,6 +39,13 @@ class MainActivity : AppCompatActivity() {
         clickBt.setOnClickListener{
             score.text = "${++cnt}"
 
+        }
+        resetBt.setOnClickListener{
+            totalScore.visibility = View.INVISIBLE
+            timer.start()
+            cnt = 0
+            score.text = "0"
+            resetBt.visibility = View.INVISIBLE
         }
 
         timer.start()
