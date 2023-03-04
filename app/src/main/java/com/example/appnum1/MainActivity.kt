@@ -18,18 +18,28 @@ class MainActivity : AppCompatActivity() {
         val score = findViewById<TextView>(R.id.counter)
         val clickBt = findViewById<Button>(R.id.click_bt)
         val timerM = findViewById<TextView>(R.id.timer)
+        val totalScore = findViewById<TextView>(R.id.total_score)
+
+        var cnt = 0
+
+        val timer = object: CountDownTimer(10000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                timerM.text = (millisUntilFinished / 1000).toString()
+            }
+            override fun onFinish() {
+                totalScore.text = "Your Score: $cnt"
+                totalScore.visibility = View.VISIBLE
+                cnt = 0
+            }
+        }
 
         score.text = "0"
-        var cnt = 0
+
         clickBt.setOnClickListener{
             score.text = "${++cnt}"
 
         }
-        val timer = object: CountDownTimer(10000, 1000) {
-            override fun onTick(millisUntilFinished: Long) {}
-            override fun onFinish() {}
-        }
+
         timer.start()
-        timerM.text = "${timer}"
     }
 }
